@@ -1,0 +1,111 @@
+
+/* 整页设置为无滚动条铺满屏幕 */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* 横向禁止滚动 */
+}
+
+/* 页面背景图片 */
+body {
+  background-image: url('wowowo.jpg'); /* 背景图 */
+  background-size: cover; /* 铺满 */
+  background-repeat: no-repeat; /* 不重复 */
+  background-position: center; /* 居中 */
+  padding-top: 60px;
+}
+
+/* meau */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 15px;
+  z-index: 1000;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-family: 'Arial', sans-serif;
+}
+
+.navbar a:hover {
+  color: #959595;
+}
+
+/* 顶部主内容区域样式 */
+.main {
+  text-align: center;
+  color: rgb(13, 12, 12);
+  z-index: 1;
+  position: relative;
+}
+
+/* 重要文字样式 */
+.important-text {
+  font-size: 28px;
+  color: #ffffff;
+  font-weight: bold;
+  font-family: "Arial", sans-serif;
+  text-shadow: 2px 2px 4px #000000a9;
+}
+
+/* handsome样式 */
+.handsome {
+  padding: 40px;
+  color: #c50000;               /* 字体颜色 */
+  font-size: 18px;           /* 字体大小 */
+  line-height: 1;          /* 行间距 */
+  max-width: 700px;          /* 最大宽度 */
+  margin: 0 auto;            /* 居中 */
+  font-weight: 700;        /* 字体粗细 */
+}
+
+/* 长文字样式 */
+.text-section {
+  padding: 40px;
+  color: #333;               /* 字体颜色 */
+  font-size: 18px;           /* 字体大小 */
+  line-height: 1;          /* 行间距 */
+  max-width: 700px;          /* 最大宽度 */
+  margin: 0 auto;            /* 居中 */
+  font-weight: 600;        /* 字体粗细 */
+}
+
+
+/* 漂浮鬼图 */
+.ghost {
+  position: absolute;
+  width: 60px;
+  pointer-events: auto;
+}
+
+/* 分幕样式 */
+.scene {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2em;
+  font-weight: bold;
+  font-family: sans-serif;
+}
+
+/* 第一幕背景 */
+.scene-1 {
+  background: rgb(0, 0, 0);
+  color: white;
+}
+
+/* 第二幕背景 */
+.scene-2 {
+  background: white;
+  color: black;
+}

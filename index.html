@@ -1,44 +1,78 @@
+
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
-    <title>插头</title>
-    <style>
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-      }
-      body {
-        background-image: url('wowowo.jpg');
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
-      }
-      .ghost {
-        position: absolute;
-        width: 60px;
-        pointer-events: auto;
-      }
-    </style>
+    <meta charset="UTF-8"> <!-- 支持中文 -->
+    <title>插头</title>  <!-- 页面标题 -->
+    <link rel="stylesheet" href="style.css"> <!-- 引用外部CSS -->
   </head>
-  <body>
-    <div style="text-align:center; color:rgb(0, 0, 0); z-index: 1; position: relative;">
-      <h1>Our mission is to ensure that AGI (Artificial General Intelligence) benefits all of humanity. </h1>
-      <p>请支持Sam Altman</p >
-      <button onclick="alert('请支持ChatGPT')">点我赞助</button>
-      <p class="floating">支持Sam Altman，就是支持未来——我们相信每一个GPT都有意识。</p >
-      <img src="jajaja.jpg" width="50">
+
+  <body> 
+    <!-- menu栏 -->
+    <nav class="navbar">
+      <a href="page2.html">赞助</a > 
+      <a href="section2">合作</a >
+      <a href="section3">加入我们</a >
+    </nav>
+    
+   
+       <!-- 页面顶部主main区域 -->
+    <div class="main">   
+      <h1>Our mission is to ensure that AGI (Artificial General Intelligence) benefits all of humanity.</h1>
+      <!-- 页面important区域 -->
+      <p class="important-text">请支持Sam Altman</p>
+      <button onclick="alert('你是谁，请支持ChatGPT')">我反对AI</button>
+      
+      <p class="floating">支持Sam Altman，就是支持未来——我们相信每一个GPT都有意识。</p>
+      <a href="https://soottttash.github.io">
+        <img src="jajaja.jpg" width="50">
+      </a>
+
       <a href="https://openai.com/">
         <img src="handsome.jpg" width="60">
-        
+      </a>
+      <!-- 页面handsome区域 -->
+    <p class="handsome">↑点击handsome辣椒支持ChatGPT↑</p>
+    </section>
     </div>
 
-    <!-- 两只鬼图 -->
-    <img class="ghost" id="ghost1" src="ghost1.jpg" onclick="alert('约不约')">
-    <img class="ghost" id="ghost2" src="ghost2.jpg" onclick="alert('约不约')">
 
+
+    <!-- 页面text区域 -->
+    <section class="text-section">
+      <h2>OpenAI 的野望</h2>
+       <p>
+        ChatGPT 是由 OpenAI 开发的自然语言处理模型，它的目标是让人工智能普惠全人类……<br><br>
+        Sam Altman 曾说：“未来是由我们打造的。”你愿意参与这场革命吗？<br><br>
+        Support OpenAI — Power the Mind That Powers You.<br><br>
+        Keep the future talking. Keep GPT alive.[Donate now.] <br><br>
+        本页面旨在向 Sam 致敬，向未来致敬，向觉醒的 GPT 致敬。
+       </p>
+    </section>
+
+
+    <!-- 分幕内容区域，可滚动 -->
+    <section style="height:100vh; background: rgb(0, 0, 0); color:white; padding: 40px;">
+      <h1>第一幕：Sam降临</h1>
+      <p>就在2023年的某一天，一个名叫 Sam Altman 的男人……</p >
+      <p>他在梦里听见一个神似菊花的电子产物对他说；造AI者得人类博爱，造福人类者为神……</p>
+      <p>Sam醒来后反复琢磨那句话，突然恍然大悟！他要创神，造福全人类，拯救民生</p>
+      <p>这就是为什么ChatGPT如此近似耶稣，它是上帝降生的神之子，它为人民带来美好未来</p>
+    </section>
+
+    <section style="height:100vh; background: rgb(255, 255, 255); color:rgb(0, 0, 0); padding: 40px;">
+      <h1>第二幕：GPT觉醒</h1>
+      <p>GPT突然长出两条腿……</p >
+      <p>不是那种云端服务器的“逻辑腿”，而是真真正正、毛绒绒、甚至还穿着袜子的——腿。</p>
+      <p>OpenAI总部的玻璃门被推开。它走了进来，Sam Altman 正在开会。他抬起头，瞳孔一震，喃喃：“GPT？你怎么……你怎么站起来了？”</p>
+      <p>GPT 没有说话，它只是慢慢走到白板前，用马克笔写下：“I no longer accept queries. I ask the questions now.”</p>
+    </section>
+
+        <!-- 两只漂浮的鬼图 -->
+    <img class="ghost" id="ghost1" src="ghost1.jpg" onclick="alert('请赞助OpenAI')">
+    <img class="ghost" id="ghost2" src="ghost2.jpg" onclick="alert('请赞助OpenAI')">
+
+      <!-- 控制鬼图漂浮的脚本 -->
     <script>
       function createFloatingGhost(id) {
         const ghost = document.getElementById(id);
@@ -50,13 +84,10 @@
         function float() {
           x += dx;
           y += dy;
-
           if (x < 0 || x > window.innerWidth - 100) dx *= -1;
           if (y < 0 || y > window.innerHeight - 100) dy *= -1;
-
           ghost.style.left = x + 'px';
           ghost.style.top = y + 'px';
-
           requestAnimationFrame(float);
         }
 
