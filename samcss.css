@@ -1,0 +1,54 @@
+body {
+  background: #000000;
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 20px;
+  text-align: center;
+}
+
+.title {
+  font-size: 1.5em;
+  color: #ffffff;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;       /* 自动换行 */
+  gap: 0;                /* 去掉间距 */
+}
+
+.gallery img {
+  width: 16%;            /* 每行 4 张图，你可以改成 20% 就是每行 5 张 */
+  aspect-ratio: 1 / 1;   /* 强制正方形 */
+  object-fit: contain;     /* 保证图不变形，超出裁剪 */
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 12px;    /* 👈 这就是软角啦 */
+  transition: transform 0.3s ease; /* 动画过渡时间和平滑度 */
+}
+
+.gallery img:hover {
+  transform: scale(1.1);    /* 鼠标悬停时放大1.1倍 */
+  z-index: 2;               /* 如果图片重叠可以加这个避免遮盖问题 */
+}
+
+
+/* 返回首页按钮 */
+.back-button {
+  display: inline-block;
+  margin-bottom: 30px;
+  padding: 10px 20px;
+  background-color: #000000;
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: #000000;
+}
