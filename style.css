@@ -21,7 +21,7 @@ body {
   position: fixed;
   top: 15px;
   right: 20px;
-  font-size: 25px;
+  font-size: 40px;
   cursor: pointer;
   z-index: 1000;
   color: rgba(0, 0, 0, 0.805);
@@ -142,3 +142,4 @@ body {
   font-size: 10 px;           /* 字体大小 */
   line-height: 0.5;          /* 行间距 */
 }
+

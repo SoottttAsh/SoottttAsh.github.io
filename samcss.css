@@ -1,9 +1,10 @@
 body {
-  background: #000000;
+  background: #1a1a1a;
   font-family: 'Arial', sans-serif;
   margin: 0;
   padding: 20px;
   text-align: center;
+  padding-top: 70px; /* 给出与 top-bar 高度一样的间距 */
 }
 
 .title {
@@ -13,26 +14,33 @@ body {
   font-weight: bold;
 }
 
-.gallery {
-  display: flex;
-  flex-wrap: wrap;       /* 自动换行 */
-  gap: 0;                /* 去掉间距 */
+/* 图片区域 */
+.masonry {
+  column-count: 6;  /* 也可以是 3 或 auto-fit */
+  column-gap: 10px;
 }
 
-.gallery img {
-  width: 16%;            /* 每行 4 张图，你可以改成 20% 就是每行 5 张 */
-  aspect-ratio: 1 / 1;   /* 强制正方形 */
-  object-fit: contain;     /* 保证图不变形，超出裁剪 */
-  margin: 0;
-  padding: 0;
-  border: none;
-  border-radius: 12px;    /* 👈 这就是软角啦 */
+.item {
+  break-inside: avoid;
+  margin-bottom: 10px;
+}
+
+.item img {
+  width: 100%;
+  display: block;
+  border-radius: 10px;
   transition: transform 0.3s ease; /* 动画过渡时间和平滑度 */
 }
 
-.gallery img:hover {
+.masonry img:hover {
   transform: scale(1.1);    /* 鼠标悬停时放大1.1倍 */
   z-index: 2;               /* 如果图片重叠可以加这个避免遮盖问题 */
+}
+
+@media (min-width: 768px) {
+  .masonry {
+    column-count: 6;
+  }
 }
 
 
@@ -42,7 +50,7 @@ body {
   margin-bottom: 30px;
   padding: 10px 20px;
   background-color: #000000;
-  color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
   text-decoration: none;
   font-weight: bold;
   border-radius: 6px;
@@ -51,4 +59,116 @@ body {
 
 .back-button:hover {
   background-color: #000000;
+}
+
+.top-bar {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  font-size: 20px;         /* 字号可调 */
+  color: rgb(0, 0, 0);            /* 字体颜色可改 */
+  z-index: 10;
+}
+
+.back-btn {
+  text-decoration: none;
+  font-size: 28px;         /* 《 的大小 */
+  color: rgb(0, 0, 0);              /* 可以调颜色 */
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.back-btn:hover {
+  color: #000000;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+
+
+
+/* 顶部标题栏样式 */
+.top-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  background-color: black;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+  z-index: 999;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* 返回按钮样式 */
+.back-btn {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.back-btn:hover {
+  color: #fefefedf; /* 鼠标悬停时变色 */
+}
+
+/* 左侧菜单栏 */
+.side-menu {
+  position: fixed;
+  top: 70px; /* 避开顶部标题栏 */
+  left: 0;
+  width: 150px;
+  height: 100%;
+  background-color: #000000;
+  padding-top: 20px;
+  z-index: 998;
+}
+
+.side-menu ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.side-menu ul li {
+  padding: 12px 20px;
+}
+
+.side-menu ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  display: block;
+}
+
+.side-menu ul li a:hover {
+  background-color: #242424;
+}
+
+/* 页面主内容区向右挪动 */
+body {
+  margin-left: 150px;
+  padding: 20px;
+  padding-top: 90px;
+}
+
+/* 顶部标题栏保持原样 */
+.page-title {
+  font-size: 30px;
+  font-weight: bold;
+  color: white;
+  padding-left: 17px; /* 往右挪 */
+}
+
+/* home键 */
+.menu-home {
+  font-size: 15px;     /* 改字体大小 */
+  color: #8f8f8f!important;;      /* 改字体颜色（亮黄） */
 }
