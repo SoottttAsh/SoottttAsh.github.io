@@ -9,7 +9,7 @@ html, body {
 
 /* 页面背景图片 */
 body {
-  background-image: url('wowowo.jpg'); /* 背景图 */
+  background-image: url('img/wowowo.jpg'); /* 背景图 */
   background-size: cover; /* 铺满 */
   background-repeat: no-repeat; /* 不重复 */
   background-position: center; /* 居中 */

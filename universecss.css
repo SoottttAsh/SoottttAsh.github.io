@@ -1,0 +1,263 @@
+
+@font-face {
+  font-family: 'Haettenschweiler';
+  src: url('font/impact.TTF') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    overflow-x: hidden; /* ❗️只隐藏横向滚动条 */
+    font-family: sans-serif;
+}
+
+
+/* 背景容器：占满整个屏幕 */
+/* 背景容器：只占首屏，随页面一起滚走 */
+.background-container {
+  position: absolute;   /* ❗️把 fixed 改成 absolute */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;          /* 保持在标题下方 */
+}
+
+/* 背景图通用样式 */
+.background-slide{
+  position:absolute;
+  top:0;
+  left:-20px;          /* 向左预留 20px */
+  width:calc(100% + 40px); /* 左右各多 20px */
+  height:100%;
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  transition:opacity 1s ease, transform 1s ease;
+  opacity:0;
+}
+
+.title {
+  position: relative;
+  opacity: 0;
+  left: -100px;
+}
+
+
+/* 设置具体图片路径（你可在此替换图片） */
+#bg1 {
+    background-image: url('img/bg1.jpg');
+}
+
+#bg2 {
+    background-image: url('img/bg2.jpg');
+}
+
+.hero-section {
+     height: 100vh; /* 撑开一个整屏高度 */
+    position: relative;
+     z-index: 1;
+}
+
+/* 外层容器：包含返回按钮和标题整体 */
+.title-wrapper {
+  position: absolute;           /* 绝对定位 */
+  top: 43%;                     /* 距离顶部大约47% */
+  left: 45px;                   /* 距离页面左边40px */
+  display: flex;                /* 横向排列 */
+  align-items: center;          /* 垂直方向居中 */
+  gap: 0px;                    /* 按钮和标题之间的间距 */
+  z-index: 10;                  /* 盖在背景图上 */
+  perspective: 1000px;
+}
+
+/* 返回按钮样式 */
+.back-button {
+     font-size: 7rem;
+     color: rgb(255, 252, 240);
+     text-decoration: none;
+     cursor: pointer;
+     transition: transform 1.2s ease, color 0.4s ease;
+    transform: rotate(0deg); /* 初始角度 */
+     font-family: 'impact', sans-serif;
+
+     /* 💡 为了实现完整的 Y轴旋转，需加 perspective */
+     transform-style: preserve-3d;
+     perspective: 1000px; /* 关键！给它“空间” */
+}
+
+.back-button:hover {
+     transform: rotate(360deg); /* 直接平面转一整圈最稳 */
+     color: #ffd700;
+}
+
+/* 标题容器，不需要定位，由 .title-wrapper 控制 */
+.title-box {
+    display: flex;
+  flex-direction: column;             /* 左对齐 */
+  align-items: flex-start;
+  line-height: 1.1;             /* 行间距（1是最贴） */
+}
+
+/* 主标题样式 */
+.main-title {
+ margin: 0;
+  font-size: 4rem;              /* 大标题字号 */
+  color: rgb(255, 252, 240); 
+  opacity: 0;                   /* 初始隐藏，用于 GSAP 动画 */
+  font-family: 'impact', sans-serif;
+  letter-spacing: 4px;          /* 字间距 */
+  transform: scaleX(1);         /* 字体横向拉伸 */
+}
+
+/* 副标题样式 */
+.subtitle {
+ margin: 0;
+  font-size: 1.5rem;            /* 小一号文字 */
+ color: rgb(255, 252, 240); 
+  opacity: 0;
+  font-family: 'impact', sans-serif;
+}
+
+/* 上方菜单区 */
+.menu-bar {
+    position: absolute;
+    top: 30px;
+     left: 50%;
+    transform: translateX(-50%);
+     display: flex;
+     gap: 40px; /* 每个菜单间距 */
+    z-index: 99;
+}
+
+.menu-item {
+     color: rgb(255, 252, 240);
+    font-family: 'impact', sans-serif;
+     font-size: 1rem;
+    text-decoration: none;
+     transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.menu-item:hover {
+     color: #ffd700;
+     transform: scale(1.1);
+}
+
+.menu-bar {
+    position: fixed;
+     top: 20px;
+    left: 50%;
+     transform: translateX(-50%);
+     display: flex;
+     justify-content: center;
+     gap: 40px;
+    padding: 10px 30px;
+    background: rgba(255, 255, 255, 0); /* 半透明背景 */
+     backdrop-filter: blur(10px);   /* 高斯模糊 */
+    border: 1px solid rgba(255, 255, 255, 0); /* 淡淡的边框 */
+    border-radius: 12px;
+    z-index: 999;
+}
+
+.menu-bar a {
+    color: rgb(255, 252, 240);
+    font-family: 'impact', sans-serif;
+    font-size: 1 rem;
+     text-decoration: none;
+     transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.menu-bar a:hover {
+     color: #ffd700;
+     transform: scale(1.1);
+}
+
+
+/* 人人人人 */
+/* 整体 gallery */
+.ai-gallery {
+    background-color: black;  /* 整个背景是黑色 */
+     padding: 100px 50px;   /* 上下左右内边距 */
+     display: grid;     /* 使用 CSS Grid 布局 */
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+     /* 自动列数：每列最少120px，最多撑满整行；超出就换行 */
+     gap: 30px;     /* 每张图之间的间距 */
+     justify-items: center;     /* 图片和名字居中对齐 */
+     text-align: center;     /* 文字居中 */
+}
+
+.ai-item {
+     position: relative;    /* 让hover图定位用 */
+     width: 200px;      /* 图片大小 */
+}
+
+.ai-item .img-default {
+     width: 100%;  /* 占满整个容器宽度 */
+     display: block;    /* 去除图片间隙 */
+}
+
+/* 悬浮图片：默认隐藏，带有缩放与淡入动画 */
+.ai-item .img-hover {
+     position: absolute;
+    top: 0;
+     left: 0;
+     width: 100%;
+     opacity: 0;
+     transform: scale(0.98); /* 初始稍小 */
+     transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* 悬停切换动画更柔和 */
+.ai-item:hover .img-default {
+    opacity: 0;
+     transform: scale(1.02); /* 稍稍放大一些 */
+     transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.ai-item:hover .img-hover {
+     opacity: 1;
+     transform: scale(1);
+}
+
+.ai-item:hover .img-default {
+     opacity: 0;    /* 悬停时默认图消失 */
+}
+
+.ai-item:hover .img-hover {
+     opacity: 1;     /* 悬停时 hover 图出现 */
+}
+
+.ai-item p {
+     color: white;       /* 字体白色 */
+     font-family: 'impact', sans-serif;     /* 粗字体 */
+    font-size: 1rem;
+     margin-top: 5px;   /* 图片和名字之间留点空隙 */
+}
+
+
+
+/* 改右侧滚动条颜色，仅适用于 WebKit 浏览器 */
+::-webkit-scrollbar {
+  width: 10px; /* 滚动条宽度 */
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(0, 0, 0); /* 滚动条轨道背景 */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #000000; /* 滚动条本体颜色（黄色） */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #000000; /* 悬停时的颜色 */
+}
